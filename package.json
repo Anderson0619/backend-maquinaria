@@ -6,7 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "echo 'Skipping rimraf' || true",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:dev": "set NODE_ENV=staging && rimraf dist && nest start --watch",
