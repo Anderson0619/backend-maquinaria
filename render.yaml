@@ -1,16 +1,22 @@
 services:
   - type: web
-    name: mi-backend-maquinaria
+    name: backend-maquinaria
     env: node
-    region: ohio  # o virginia, oregon
+    region: ohio
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: |
+      npm config set legacy-peer-deps true
+      npm install --legacy-peer-deps
+      npm run build
     startCommand: npm run start:prod
     healthCheckPath: /health
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
-      - key: MONGODB_URI
-        sync: false  # Lo configurarás en el dashboard
+    disk:
+      name: npm-cache
+      mountPath: /opt/render/.cache
+      sizeGB: 1
