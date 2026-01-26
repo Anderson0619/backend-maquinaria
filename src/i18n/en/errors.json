@@ -1,0 +1,18 @@
+{
+  "BAD_LOGIN": "Username or password are incorrect.",
+  "AUTHENTICATION_ERROR": "Authenticate validation error.",
+  "USER_NOT_AUTHORIZED": "The user is not authorized to enter.",
+  "SOCIAL_CNN_ERR": "Error connecting to {provider} service.",
+  "SOCIAL_PERMISSION_PROBLEMS": "Error getting your {provider} account details.",
+  "USER_ALREADY_EXISTS": "There is already a user with the email {email}.",
+  "USER_EMAIL_NOT_REGISTERED": "The email {email} is not registered.",
+  "USER_NOT_EXISTS": "The user does not exist.",
+  "VENDOR_NOT_EXISTS": "The seller you are looking for does not exists or is not activated.",
+  "CHANGE_PASSWORD_SUBJECT": "Change password",
+  "CHANGE_PASSWORD_SUCCESS_SUBJECT": "Change password succeded",
+  "REFRESH_TOKEN_MALFORMED": "The refresh token is malformed.",
+  "EMAIL_ALREADY_EXISTS": "The email {email} is already registered.",
+  "FILE_FORMAT_NOT_SUPPORTED": "The file format is not supported.",
+  "ROLE_NOT_FOUND": "The role with id {id} does not exist.",
+  "ROLE_ALREADY_EXISTS": "The role with name {name} already exists."
+}

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mi-backend-maquinaria
+    env: node
+    region: ohio  # o virginia, oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false  # Lo configurarás en el dashboard

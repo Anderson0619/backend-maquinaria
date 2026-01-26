@@ -1,0 +1,18 @@
+{
+  "BAD_LOGIN": "Usuario o password son incorrectos.",
+  "AUTHENTICATION_ERROR": "Error de autenticación.",
+  "USER_NOT_AUTHORIZED": "El usuario no está autorizado para entrar.",
+  "SOCIAL_CNN_ERR": "Error conectando con el servicio del proveedor {provider}.",
+  "SOCIAL_PERMISSION_PROBLEMS": "Error al obtener los detalles de su cuenta de {proveedor}.",
+  "USER_ALREADY_EXISTS": "Ya existe un usuario con el correo electrónico {email}.",
+  "USER_EMAIL_NOT_REGISTERED": "El correo electrónico {email} no está registrado.",
+  "USER_NOT_EXISTS": "El usuario no existe.",
+  "VENDOR_NOT_EXISTS": "El vendedor que busca no existe o no está activado.",
+  "CHANGE_PASSWORD_SUBJECT": "Cambio de Constraseña",
+  "CHANGE_PASSWORD_SUCCESS_SUBJECT": "Contraseña actualziada con éxito",
+  "REFRESH_TOKEN_MALFORMED": "El token de refresco no es válido.",
+  "EMAIL_ALREADY_EXISTS": "El correo electrónico {email} ya está registrado.",
+  "FILE_FORMAT_NOT_SUPPORTED": "El formato de archivo no está soportado.",
+  "ROLE_NOT_FOUND": "El rol con el id {id} no existe.",
+  "ROLE_ALREADY_EXISTS": "El rol con el nombre {name} ya existe."
+}

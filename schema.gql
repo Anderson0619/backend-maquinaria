@@ -1,0 +1,602 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Role implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  name: String!
+  vendor: String!
+  routes: [RoutePathEnum!]!
+  deletable: Boolean!
+  editable: Boolean!
+}
+
+interface Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""RoutePathEnum enum type"""
+enum RoutePathEnum {
+  COMPONENTS
+  PROFILE
+  SITE_CONFIG
+  LANDING
+  NOTFOUND
+  LOGIN
+  ROLES
+  USERS
+  VENDORS
+  MAQUINARIA
+  UBICACION
+}
+
+type ColorType {
+  color: String!
+  type: String!
+}
+
+type Address {
+  address: String
+  lat: Float
+  lng: Float
+}
+
+type VendorBanner {
+  title: String
+  description: String
+  bannerUrl: String!
+  cta: String
+  btnColor: String
+  btnText: String
+  align: String
+  modal: String
+}
+
+type Vendor implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  slug: String!
+  name: String!
+  phone: String
+  email: String
+  status: VendorStatusEnum
+  logo: String
+  banners: [VendorBanner!]
+  description: String
+  address: Address
+  domains: [String!]
+  colors: [ColorType!]
+  url: String
+  thumbnail: String
+}
+
+"""Vendor site status"""
+enum VendorStatusEnum {
+  ACTIVE
+  MAINTENANCE
+  DOWN
+}
+
+type UserRole {
+  role: [String!]!
+  vendor: String!
+}
+
+type UserVendorListType {
+  id: String!
+  name: String!
+}
+
+type User implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  name: String!
+  lastname: String
+  email: String!
+  phone: String
+  recoveryPasswordToken: String
+  password: String
+  networkType: UserNetworkTypeEnum
+  roles: [UserRole!]!
+  selectedVendor: Vendor
+  random4digits: Float
+  active: Boolean
+  profileImage: String
+  root: Boolean
+  vendorList: [UserVendorListType!]
+  vendorRoles: [Role!]
+  userRoutes: [RoutePathEnum!]!
+}
+
+"""User network type enum"""
+enum UserNetworkTypeEnum {
+  WEB
+  FACEBOOK
+  GOOGLE
+  APPLE
+  LINKEDIN
+}
+
+type AuthPayloadType {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type RefreshTokenPayload {
+  accessToken: String!
+}
+
+type Maquinaria implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  maquiNumber: String
+  type: String
+  mark: String
+  model: String
+  anio: String
+  description: String
+}
+
+type Ubicacion implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  ubiNumber: String
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+}
+
+input RoleType {
+  name: String!
+  vendor: String!
+  routes: [RoutePathEnum!]!
+  deletable: Boolean!
+  editable: Boolean!
+}
+
+input Color {
+  color: String!
+  type: String!
+}
+
+input AddressType {
+  address: String
+  lat: Float
+  lng: Float
+}
+
+input VendorBannerType {
+  title: String
+  description: String
+  bannerUrl: String!
+  cta: String
+  btnColor: String
+  btnText: String
+  align: String
+  modal: String
+}
+
+input VendorType {
+  slug: String!
+  name: String!
+  phone: String
+  email: String
+  status: VendorStatusEnum
+  logo: String
+  banners: [VendorBannerType!]
+  description: String
+  address: AddressType
+  domains: [String!]
+  colors: [Color!]
+  url: String
+  thumbnail: String
+}
+
+input UserRoleType {
+  role: [String!]!
+  vendor: String!
+}
+
+input UserVendorListTypeInput {
+  id: String!
+  name: String!
+}
+
+input UserType {
+  name: String!
+  lastname: String
+  email: String!
+  phone: String
+  recoveryPasswordToken: String
+  password: String
+  networkType: UserNetworkTypeEnum
+  roles: [UserRoleType!]!
+  selectedVendor: VendorType
+  random4digits: Float
+  active: Boolean = false
+  profileImage: String
+  root: Boolean = false
+  vendorList: [UserVendorListTypeInput!]
+  vendorRoles: [RoleType!]
+  userRoutes: [RoutePathEnum!]! = []
+}
+
+input RefreshTokenPayloadType {
+  accessToken: String!
+}
+
+input MaquinariaType {
+  maquiNumber: String
+  type: String
+  mark: String
+  model: String
+  anio: String
+  description: String
+}
+
+input UbicacionType {
+  ubiNumber: String
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+}
+
+type Query {
+  """Get user information"""
+  user: User!
+
+  """Get vendor by hostname"""
+  vendor: Vendor!
+  vendorBySlug(slug: String!): Vendor!
+
+  """Get all the vendors"""
+  vendors: [Vendor!]!
+
+  """Get all the vendor banners"""
+  vendorBanners(getVendorBannersInput: GetVendorBannersInput!): [VendorBanner!]!
+
+  """Get vendor by logged user (selectedVendor)"""
+  userVendor: Vendor!
+
+  """Get current vendor"""
+  currentVendor: Vendor!
+
+  """Get all vendor users"""
+  vendorUsers: [User!]!
+
+  """Get all roles"""
+  getAllRoles: [Role!]!
+
+  """Get role by id"""
+  getRole(getRoleInput: GetRoleInput!): Role!
+  maquinarias: [Maquinaria!]!
+  maquinariasByStatus(status: MaquinariaStatusEnum!): [Maquinaria!]!
+  ubicaciones: [Ubicacion!]!
+  ubicacionesByStatus(status: UbicacionStatusEnum!): [Ubicacion!]!
+}
+
+input GetVendorBannersInput {
+  vendor: String!
+}
+
+input GetRoleInput {
+  id: String!
+}
+
+"""Maquinaria status"""
+enum MaquinariaStatusEnum {
+  ACTIVE
+  DEACTIVATED
+}
+
+"""Ubicacion status"""
+enum UbicacionStatusEnum {
+  ACTIVE
+  DEACTIVATED
+}
+
+type Mutation {
+  """Updates user"""
+  updateProfile(updateProfileInput: UpdateProfileInput!): User!
+
+  """Change password"""
+  changePassword(changePasswordRequestInput: ChangePasswordRequestInput!): User!
+
+  """Do reset password"""
+  doResetPassword(changePasswordInput: ChangePasswordInput!): User!
+
+  """Update user selected vendor"""
+  updateUserSelectedVendor(updateUserSelectedVendorInput: UpdateUserSelectedVendorInput!): User!
+
+  """Update user"""
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  createVendor(createVendorInput: CreateVendorInput!): Vendor!
+
+  """Update vendor"""
+  updateVendor(updateVendorInput: UpdateVendorInput!): Vendor!
+
+  """Create a user for this vendor"""
+  createUserVendor(createVendorUserInput: CreateVendorUserInput!): User!
+
+  """Update a user for this vendor"""
+  updateUserVendor(updateVendorUserInput: UpdateVendorUserInput!): User!
+
+  """Delete user"""
+  deleteVendorUser(deleteVendorUserInput: DeleteVendorUserInput!): User!
+
+  """Login as user"""
+  login(loginInput: LoginInput!): AuthPayloadType!
+
+  """Login as admin"""
+  loginAdmin(loginInput: LoginInput!): AuthPayloadType!
+
+  """Get new access token"""
+  refreshAccessToken(refreshAccessTokenInput: RefreshAccessTokenInput!): RefreshTokenPayload!
+
+  """Create a user"""
+  signup(signUpInput: CreateUserInput!): AuthPayloadType!
+
+  """Re send email confirmation"""
+  reSendEmailConfirmation(email: String!): Boolean!
+
+  """Validate email confirmation"""
+  validateEmailConfirmation(validateEmailConfirmationInput: ValidateEmailConfirmationInput!): Boolean!
+
+  """Login with Facebook account"""
+  loginWithFacebook(facebookLogInInput: SocialNetworkLogInInput!): AuthPayloadType!
+
+  """Login with Google account"""
+  loginWithGoogle(googleLogInInput: SocialNetworkLogInInput!): AuthPayloadType!
+
+  """Login with LinkedIn account"""
+  loginWithLinkedIn(linkedinLogInInput: SocialNetworkLogInInput!): AuthPayloadType!
+
+  """Create role"""
+  createRole(createRoleInput: CreateRoleInput!): Role!
+
+  """Update role"""
+  updateRole(updateRoleInput: UpdateRoleInput!): Role!
+
+  """Delete role"""
+  deleteRole(deleteRoleInput: DeleteRoleInput!): Role!
+
+  """Create Maquinaria"""
+  createMaquinaria(createMaquinariaInput: CreateMaquinariaInput!): Maquinaria!
+  updateMaquinaria(updateMaquinariaInput: UpdateMaquinariaInput!): Maquinaria!
+  deleteMaquinaria(deleteMaquinariaInput: DeleteMaquinariaInput!): Maquinaria!
+
+  """Create Ubicacion"""
+  createUbicacion(createUbicacionInput: CreateUbicacionInput!): Ubicacion!
+  updateUbicacion(updateUbicacionInput: UpdateUbicacionInput!): Ubicacion!
+  deleteUbicacion(deleteUbicacionInput: DeleteUbicacionInput!): Ubicacion!
+}
+
+input UpdateProfileInput {
+  name: String
+  lastname: String
+  email: String
+  password: String
+  phone: String
+  profileImage: String
+  selectedVendor: String
+}
+
+input ChangePasswordRequestInput {
+  email: String!
+}
+
+input ChangePasswordInput {
+  passwordRecoveryToken: String!
+  userId: String!
+  password: String!
+}
+
+input UpdateUserSelectedVendorInput {
+  vendor: String!
+}
+
+input UpdateUserInput {
+  name: String!
+  lastname: String
+  email: String!
+  phone: String
+  password: String!
+  roles: [RoleType!]
+  active: Boolean
+  networkType: String
+  vendor: String
+  root: Boolean
+  id: String
+}
+
+input CreateVendorInput {
+  name: String
+  logo: String
+  banners: [VendorBannerType!]
+  description: String
+  status: VendorStatusEnum
+  email: String
+  phone: String
+  url: String
+  colors: [Color!]
+  address: AddressType
+  thumbnail: String
+  domains: [String!]
+}
+
+input UpdateVendorInput {
+  name: String
+  logo: String
+  banners: [VendorBannerType!]
+  description: String
+  status: VendorStatusEnum
+  email: String
+  phone: String
+  url: String
+  colors: [Color!]
+  address: AddressType
+  thumbnail: String
+  domains: [String!]
+  id: String!
+}
+
+input CreateVendorUserInput {
+  name: String!
+  lastname: String!
+  email: String!
+  password: String!
+  roles: [String!]
+}
+
+input UpdateVendorUserInput {
+  name: String!
+  lastname: String!
+  email: String!
+  password: String!
+  roles: [String!]
+  id: String!
+}
+
+input DeleteVendorUserInput {
+  id: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RefreshAccessTokenInput {
+  refreshToken: String!
+}
+
+input CreateUserInput {
+  name: String!
+  lastname: String
+  email: String!
+  phone: String
+  password: String!
+  roles: [RoleType!]
+  active: Boolean
+  networkType: String
+  vendor: String
+  root: Boolean
+}
+
+input ValidateEmailConfirmationInput {
+  email: String!
+  random4digits: Float!
+}
+
+input SocialNetworkLogInInput {
+  accessToken: String!
+}
+
+input CreateRoleInput {
+  id: String!
+  name: String!
+  routes: [RoutePathEnum!]! = []
+  deletable: Boolean! = true
+  editable: Boolean! = true
+}
+
+input UpdateRoleInput {
+  id: String!
+  name: String!
+  routes: [RoutePathEnum!]! = []
+  deletable: Boolean! = true
+  editable: Boolean! = true
+}
+
+input DeleteRoleInput {
+  id: String!
+}
+
+input CreateMaquinariaInput {
+  """Maquinaria"""
+  maquiNumber: String!
+  type: String
+  mark: String
+  model: String
+  anio: String
+  description: String
+}
+
+input UpdateMaquinariaInput {
+  """Maquinaria"""
+  maquiNumber: String
+  type: String
+  mark: String
+  model: String
+  anio: String
+  description: String
+
+  """Maquinaria ID"""
+  id: String!
+}
+
+input DeleteMaquinariaInput {
+  """Maquinaria ID"""
+  id: String!
+}
+
+input CreateUbicacionInput {
+  """Ubicacion"""
+  ubiNumber: String!
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+}
+
+input UpdateUbicacionInput {
+  """Ubicacion"""
+  ubiNumber: String
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+
+  """Ubicacion ID"""
+  id: String!
+}
+
+input DeleteUbicacionInput {
+  """Ubicacion ID"""
+  id: String!
+}
