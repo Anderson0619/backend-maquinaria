@@ -22,7 +22,7 @@ export class UbicacionService {
 
     const ubicaciones = await this.ubicacionRepository.find({});
 
-    const ubiNumber = `${ubicaciones.length + 1} - ${moment().format('YYYY')}`;
+    const ubiNumber = `${'Ubi'} - ${ubicaciones.length + 1}`;
 
     if(ubicacion){
       throw new UserInputError("Ubicacion already exists");

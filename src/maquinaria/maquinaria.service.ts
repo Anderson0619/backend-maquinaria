@@ -22,7 +22,7 @@ export class MaquinariaService {
 
     const maquinarias = await this.maquinariaRepository.find({});
 
-    const maquiNumber = `${maquinarias.length + 1} - ${moment().format('YYYY')}`;
+    const maquiNumber = `${maquinarias.length + 1} - ${'Maquinaria'}`;
 
     if(maquinaria){
       throw new UserInputError("Análisis already exists");
