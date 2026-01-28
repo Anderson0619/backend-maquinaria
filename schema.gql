@@ -41,6 +41,8 @@ enum RoutePathEnum {
   VENDORS
   MAQUINARIA
   UBICACION
+  MOVIMIENTO
+  DASHBOARD
 }
 
 type ColorType {
@@ -152,11 +154,15 @@ type Maquinaria implements Base {
   deleted: Boolean
   deletedAt: DateTime
   maquiNumber: String
+  identificador: String
   type: String
   mark: String
   model: String
   anio: String
   description: String
+  estado: String
+  location: String
+  detalle: String
 }
 
 type Ubicacion implements Base {
@@ -172,6 +178,23 @@ type Ubicacion implements Base {
   canton: String
   encargado: String
   description: String
+}
+
+type Movimiento implements Base {
+  id: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+  deleted: Boolean
+  deletedAt: DateTime
+  movimientoNumber: String
+  maquinaria: [String!]
+  solicitante: String
+  autoriza: String
+  traslado: [String!]
+  origen: [String!]
+  fechaT: String
+  fechaS: String
+  movimiento: String
 }
 
 input RoleType {
@@ -255,11 +278,15 @@ input RefreshTokenPayloadType {
 
 input MaquinariaType {
   maquiNumber: String
+  identificador: String
   type: String
   mark: String
   model: String
   anio: String
   description: String
+  estado: String
+  location: String
+  detalle: String
 }
 
 input UbicacionType {
@@ -270,6 +297,18 @@ input UbicacionType {
   canton: String
   encargado: String
   description: String
+}
+
+input MovimientoType {
+  movimientoNumber: String
+  maquinaria: [String!] = []
+  solicitante: String
+  autoriza: String
+  traslado: [String!] = []
+  origen: [String!] = []
+  fechaT: String
+  fechaS: String
+  movimiento: String
 }
 
 type Query {
@@ -304,6 +343,8 @@ type Query {
   maquinariasByStatus(status: MaquinariaStatusEnum!): [Maquinaria!]!
   ubicaciones: [Ubicacion!]!
   ubicacionesByStatus(status: UbicacionStatusEnum!): [Ubicacion!]!
+  movimientos: [Movimiento!]!
+  movimientosByStatus(status: MovimientoStatusEnum!): [Movimiento!]!
 }
 
 input GetVendorBannersInput {
@@ -322,6 +363,12 @@ enum MaquinariaStatusEnum {
 
 """Ubicacion status"""
 enum UbicacionStatusEnum {
+  ACTIVE
+  DEACTIVATED
+}
+
+"""Movimiento status"""
+enum MovimientoStatusEnum {
   ACTIVE
   DEACTIVATED
 }
@@ -400,6 +447,11 @@ type Mutation {
   createUbicacion(createUbicacionInput: CreateUbicacionInput!): Ubicacion!
   updateUbicacion(updateUbicacionInput: UpdateUbicacionInput!): Ubicacion!
   deleteUbicacion(deleteUbicacionInput: DeleteUbicacionInput!): Ubicacion!
+
+  """Create Movimiento"""
+  createMovimiento(createMovimientoInput: CreateMovimientoInput!): Movimiento!
+  updateMovimiento(updateMovimientoInput: UpdateMovimientoInput!): Movimiento!
+  deleteMovimiento(deleteMovimientoInput: DeleteMovimientoInput!): Movimiento!
 }
 
 input UpdateProfileInput {
@@ -546,21 +598,29 @@ input DeleteRoleInput {
 input CreateMaquinariaInput {
   """Maquinaria"""
   maquiNumber: String!
+  identificador: String
   type: String
   mark: String
   model: String
   anio: String
   description: String
+  estado: String
+  location: String
+  detalle: String
 }
 
 input UpdateMaquinariaInput {
   """Maquinaria"""
   maquiNumber: String
+  identificador: String
   type: String
   mark: String
   model: String
   anio: String
   description: String
+  estado: String
+  location: String
+  detalle: String
 
   """Maquinaria ID"""
   id: String!
@@ -598,5 +658,39 @@ input UpdateUbicacionInput {
 
 input DeleteUbicacionInput {
   """Ubicacion ID"""
+  id: String!
+}
+
+input CreateMovimientoInput {
+  """Movimiento"""
+  movimientoNumber: String!
+  maquinaria: [String!]! = []
+  solicitante: String
+  autoriza: String
+  traslado: [String!] = []
+  origen: [String!] = []
+  fechaS: String
+  fechaT: String
+  movimiento: String
+}
+
+input UpdateMovimientoInput {
+  """Movimiento"""
+  movimientoNumber: String
+  maquinaria: [String!] = []
+  solicitante: String
+  autoriza: String
+  traslado: [String!] = []
+  origen: [String!] = []
+  fechaS: String
+  fechaT: String
+  movimiento: String
+
+  """Movimiento ID"""
+  id: String!
+}
+
+input DeleteMovimientoInput {
+  """Movimiento ID"""
   id: String!
 }

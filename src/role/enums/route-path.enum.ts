@@ -12,7 +12,8 @@ export enum RoutePathEnum {
   VENDORS = "VENDORS",
   MAQUINARIA = "MAQUINARIA",
   UBICACION = "UBICACION",
-  
+  MOVIMIENTO = "MOVIMIENTO",
+  DASHBOARD = "DASHBOARD",
 }
 
 registerEnumType(RoutePathEnum, {

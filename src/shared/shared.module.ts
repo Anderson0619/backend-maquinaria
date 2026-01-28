@@ -15,6 +15,7 @@ import { User, UserSchema } from "src/user/schemas/user.schema";
 import { Vendor, VendorSchema } from "src/vendor/vendor.schema";
 import { Maquinaria, MaquinariaSchema } from "src/maquinaria/maquinaria.schema";
 import { Ubicacion, UbicacionSchema } from "src/ubicacion/ubicacion.schema";
+import { Movimiento, MovimientoSchema } from "src/movimiento/movimiento.schema";
 
 @Global()
 @Module({
@@ -28,6 +29,7 @@ import { Ubicacion, UbicacionSchema } from "src/ubicacion/ubicacion.schema";
       { name: Role.name, schema: RoleSchema },
       { name: Maquinaria.name, schema: MaquinariaSchema },
       { name: Ubicacion.name, schema: UbicacionSchema },
+      { name: Movimiento.name, schema: MovimientoSchema },
     ]),
     HttpModule.register({
       maxBodyLength: Infinity,

@@ -6,6 +6,9 @@ export class CreateMaquinariaInput {
   maquiNumber: string;
 
   @Field(() => String, {nullable: true})
+  identificador?: string;
+  
+  @Field(() => String, {nullable: true})
   type?: string;
   
   @Field(() => String, {nullable: true})
@@ -19,5 +22,14 @@ export class CreateMaquinariaInput {
 
   @Field(() => String, {nullable: true})
   description?: string;
+
+  @Field(() => String, {nullable: true})
+  estado?: string;
+
+  @Field(() => String, {nullable: true})
+  location?: string;
+
+  @Field(() => String, {nullable: true})
+  detalle?: string;
 }  
    

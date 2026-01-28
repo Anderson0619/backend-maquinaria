@@ -14,6 +14,7 @@ import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module
 import { join } from 'path';
 import { MaquinariaModule } from './maquinaria/maquinaria.module';
 import { UbicacionModule } from './ubicacion/ubicacion.module';
+import { MovimientoModule } from './movimiento/movimiento.module';
 
 @Module({
   imports: [
@@ -74,6 +75,7 @@ import { UbicacionModule } from './ubicacion/ubicacion.module';
     }),
     MaquinariaModule,
     UbicacionModule,
+    MovimientoModule,
   ],
   controllers: [],
   providers: [],

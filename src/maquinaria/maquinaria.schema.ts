@@ -15,6 +15,10 @@ export class Maquinaria extends Base {
 
     @Field(() => String, {nullable: true})
     @Prop()
+    identificador?: string;
+
+    @Field(() => String, {nullable: true})
+    @Prop()
     type?: string;
     
     @Field(() => String, {nullable: true})
@@ -32,6 +36,18 @@ export class Maquinaria extends Base {
     @Field(() => String, {nullable: true})
     @Prop()
     description?: string;
+
+    @Field(() => String, {nullable: true})
+    @Prop()
+    estado?: string;
+
+    @Field(() => String, {nullable: true})
+    @Prop() 
+    location?: string;
+
+    @Field(() => String, {nullable: true})
+    @Prop()
+    detalle?: string;
     
 }
 
