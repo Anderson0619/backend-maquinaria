@@ -18,11 +18,12 @@ export class MaquinariaService {
   async create(createMaquinariaInput: CreateMaquinariaInput): Promise<Maquinaria> {
     const maquinaria = await this.maquinariaRepository.findOne({
       maquiNumber: createMaquinariaInput.maquiNumber,
+      deleted: false,
     });
 
-    const maquinarias = await this.maquinariaRepository.find({});
+    //const maquinarias = await this.maquinariaRepository.find({});
 
-    const maquiNumber = `${maquinarias.length + 1} - ${'Maquinaria'}`;
+    //const maquiNumber = `${maquinarias.length + 1} - ${'Maquinaria'}`;
 
     if(maquinaria){
       throw new UserInputError("Análisis already exists");
@@ -31,7 +32,7 @@ export class MaquinariaService {
     const createdMaquinaria = await this.maquinariaRepository.create({
       ...createMaquinariaInput,
       id: uuid(),
-      maquiNumber,
+      //maquiNumber,
       createdAt: new Date(),
       deleted: false,
     })
