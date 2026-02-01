@@ -341,10 +341,10 @@ type Query {
   getRole(getRoleInput: GetRoleInput!): Role!
   maquinarias: [Maquinaria!]!
   maquinariasByStatus(status: MaquinariaStatusEnum!): [Maquinaria!]!
-  ubicaciones: [Ubicacion!]!
-  ubicacionesByStatus(status: UbicacionStatusEnum!): [Ubicacion!]!
   movimientos: [Movimiento!]!
   movimientosByStatus(status: MovimientoStatusEnum!): [Movimiento!]!
+  ubicaciones: [Ubicacion!]!
+  ubicacionesByStatus(status: UbicacionStatusEnum!): [Ubicacion!]!
 }
 
 input GetVendorBannersInput {
@@ -361,14 +361,14 @@ enum MaquinariaStatusEnum {
   DEACTIVATED
 }
 
-"""Ubicacion status"""
-enum UbicacionStatusEnum {
+"""Movimiento status"""
+enum MovimientoStatusEnum {
   ACTIVE
   DEACTIVATED
 }
 
-"""Movimiento status"""
-enum MovimientoStatusEnum {
+"""Ubicacion status"""
+enum UbicacionStatusEnum {
   ACTIVE
   DEACTIVATED
 }
@@ -443,15 +443,15 @@ type Mutation {
   updateMaquinaria(updateMaquinariaInput: UpdateMaquinariaInput!): Maquinaria!
   deleteMaquinaria(deleteMaquinariaInput: DeleteMaquinariaInput!): Maquinaria!
 
-  """Create Ubicacion"""
-  createUbicacion(createUbicacionInput: CreateUbicacionInput!): Ubicacion!
-  updateUbicacion(updateUbicacionInput: UpdateUbicacionInput!): Ubicacion!
-  deleteUbicacion(deleteUbicacionInput: DeleteUbicacionInput!): Ubicacion!
-
   """Create Movimiento"""
   createMovimiento(createMovimientoInput: CreateMovimientoInput!): Movimiento!
   updateMovimiento(updateMovimientoInput: UpdateMovimientoInput!): Movimiento!
   deleteMovimiento(deleteMovimientoInput: DeleteMovimientoInput!): Movimiento!
+
+  """Create Ubicacion"""
+  createUbicacion(createUbicacionInput: CreateUbicacionInput!): Ubicacion!
+  updateUbicacion(updateUbicacionInput: UpdateUbicacionInput!): Ubicacion!
+  deleteUbicacion(deleteUbicacionInput: DeleteUbicacionInput!): Ubicacion!
 }
 
 input UpdateProfileInput {
@@ -631,36 +631,6 @@ input DeleteMaquinariaInput {
   id: String!
 }
 
-input CreateUbicacionInput {
-  """Ubicacion"""
-  ubiNumber: String!
-  type: String
-  ubicacion: String
-  provincia: String
-  canton: String
-  encargado: String
-  description: String
-}
-
-input UpdateUbicacionInput {
-  """Ubicacion"""
-  ubiNumber: String
-  type: String
-  ubicacion: String
-  provincia: String
-  canton: String
-  encargado: String
-  description: String
-
-  """Ubicacion ID"""
-  id: String!
-}
-
-input DeleteUbicacionInput {
-  """Ubicacion ID"""
-  id: String!
-}
-
 input CreateMovimientoInput {
   """Movimiento"""
   movimientoNumber: String!
@@ -692,5 +662,35 @@ input UpdateMovimientoInput {
 
 input DeleteMovimientoInput {
   """Movimiento ID"""
+  id: String!
+}
+
+input CreateUbicacionInput {
+  """Ubicacion"""
+  ubiNumber: String!
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+}
+
+input UpdateUbicacionInput {
+  """Ubicacion"""
+  ubiNumber: String
+  type: String
+  ubicacion: String
+  provincia: String
+  canton: String
+  encargado: String
+  description: String
+
+  """Ubicacion ID"""
+  id: String!
+}
+
+input DeleteUbicacionInput {
+  """Ubicacion ID"""
   id: String!
 }

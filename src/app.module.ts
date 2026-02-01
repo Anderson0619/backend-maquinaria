@@ -15,6 +15,7 @@ import { join } from 'path';
 import { MaquinariaModule } from './maquinaria/maquinaria.module';
 import { UbicacionModule } from './ubicacion/ubicacion.module';
 import { MovimientoModule } from './movimiento/movimiento.module';
+import { ApiRestModule } from './api-rest/api-rest.module';
 
 @Module({
   imports: [
@@ -76,6 +77,7 @@ import { MovimientoModule } from './movimiento/movimiento.module';
     MaquinariaModule,
     UbicacionModule,
     MovimientoModule,
+    ApiRestModule,
   ],
   controllers: [],
   providers: [],

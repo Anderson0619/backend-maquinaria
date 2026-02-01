@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { CreateMaquinariaInput } from './inputs/create-maquinaria.input';
 import { UpdateMaquinariaInput } from './inputs/update-maquinaria.input';
 import { DeleteMaquinariaInput } from './inputs/delete-maquinaria.input';
-import { MaquinariaRepository } from './maquinaria.respository';  
+import { MaquinariaRepository } from './maquinaria.repository';  
 import { Maquinaria } from './maquinaria.schema';
 import moment = require('moment');
 import { MaquinariaStatusEnum } from './enum/maquinaria.enum';
