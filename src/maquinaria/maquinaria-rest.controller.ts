@@ -32,11 +32,11 @@ export class MaquinariaRestController {
     
     if (format === 'powerbi') {
       return {
-        "@odata.context": "http://localhost:3001/rest/maquinaria",
+        "@odata.context": "http://74.208.126.111:3001/rest/maquinaria",
         "value": paginatedData,
         "@odata.count": data.length,
         "@odata.nextLink": data.length > skip + take 
-          ? `http://localhost:3001/rest/maquinaria?page=${(skip/take)+2}&limit=${take}`
+          ? `http://74.208.126.111:3001/rest/maquinaria?page=${(skip/take)+2}&limit=${take}`
           : null
       };
     }

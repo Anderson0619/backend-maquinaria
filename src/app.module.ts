@@ -72,7 +72,11 @@ import { ApiRestModule } from './api-rest/api-rest.module';
     SharedModule,
     RoleModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),  
+      rootPath: join(__dirname, '..', 'public'),
+      exclude: ['/rest/*', '/api/*', '/graphql'], // EXCLUYE RUTAS API
+      serveStaticOptions: {
+        index: false, // IMPORTANTE: no servir index.html automáticamente
+      }
     }),
     MaquinariaModule,
     UbicacionModule,
